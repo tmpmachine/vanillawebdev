@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple To Do List</title>
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/widgets.css" rel="stylesheet"/>
+</head>
+<body>
+  
+  <!-- # form -->
+  <form data-onsubmit="handle-submit">
+    Task name: <input type="text" name="title"/>
+    <button>Add Task</button>
+  </form>
+  <div class="void void-full"></div>
+  
+  <!-- # task list -->
+  <div class="_taskList wg-TaskList" data-onclick="handle-click-list"></div>
+  
+  
+  <!-- # templates-->
+  <template id="tmp-task">
+    <div class="wg-Task" data-kind="item">
+      <!-- # tmp-task -->
+      <div class="title"></div>
+      <button data-action="delete">Delete</button>
+    </div>
+  </template>
+  
+  <script src="js/components/task-component.js"></script>
+  <script src="js/dom-events.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/uis/task-ui.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script src="index.js"></script>
+  
+</body>
+</html>

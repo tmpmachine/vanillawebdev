@@ -1,0 +1,9 @@
+.wg-Task {
+    display: flex;
+    gap: 1rem;
+}
+
+.wg-TaskList {
+    display: grid;
+    gap: 0.5rem;
+}
