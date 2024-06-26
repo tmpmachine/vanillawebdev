@@ -1,0 +1,54 @@
+<button onclick="downloadBlob()">Download</button>
+<button onclick="loadFile()">Upload JSON</button>
+
+Isi konten file: <span id="kontenText"></span>
+
+<script>
+
+let $ = document.querySelector.bind(document);
+
+function loadFile() {
+  let input = document.createElement('input');
+  input.type ='file';
+  input.onchange = function() {
+    let reader = new FileReader();
+    reader.onload = async function(evt) {
+        try {
+            let data = JSON.parse(evt.target.result);
+            let string = JSON.stringify(data);
+            $('#kontenText').replaceChildren(string);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    reader.readAsText(this.files[0]);
+
+
+    input.remove();
+  };
+  
+  document.body.append(input);
+  input.click();
+}
+
+function downloadBlob() {
+  let data = {
+    name: 'Bob'
+  }
+  let string = JSON.stringify(data);
+
+    let blob = new Blob([string], {type: 'application/json'});
+    let url = URL.createObjectURL(blob);
+    
+    let el = document.createElement('a');
+    el.href = url;
+    el.target = '_blank';
+    el.download = 'download.json';
+    el.onclick = function() {
+      el.remove();
+    };
+    document.body.append(el);
+    el.click();
+}
+
+</script>
