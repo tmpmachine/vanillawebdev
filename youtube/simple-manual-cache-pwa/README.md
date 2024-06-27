@@ -22,3 +22,9 @@ This is minimal setup to build a PWA where the user manually cache the applicati
     ]
 }
 ```
+
+If you're trying this on an online service, e.g. GitHub Codespace or Google IDX, you need to specify `crossorigin="use-credentials"` for the manifest to get away with CORS issue.
+```
+<!-- pwa manifest -->
+<link rel="manifest" href="manifest.json" crossorigin="use-credentials"/>
+```
