@@ -1,0 +1,28 @@
+<input id="fileInput" type="file"/>
+<div>
+  <canvas id="canvas" width="500" height="500" style="border:1px solid;"></canvas>
+</div>
+
+<script>
+
+  let $ = document.querySelector.bind(document);
+  let ctx = $('#canvas').getContext('2d');
+  let inputEl = $('#fileInput');
+
+  inputEl.onchange = function() {
+    
+    let url = URL.createObjectURL(inputEl.files[0]);
+    
+    let imgEl = new Image();
+    imgEl.src = url;
+    imgEl.onload = () => {
+      let x = 0;
+      let y = 0;
+      ctx.drawImage(imgEl, x, y)
+    }
+
+    inputEl.value = '';
+
+  };
+  
+</script>
