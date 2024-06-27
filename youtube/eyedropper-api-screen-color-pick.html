@@ -1,0 +1,15 @@
+<button onclick="sampleColorFromScreen()">Pick color</button>
+
+<script>
+  
+  async function sampleColorFromScreen() {
+    const eyeDropper = new EyeDropper();
+    try {
+      const result = await eyeDropper.open();
+      console.log(result)
+    } catch (e) {
+      //
+    }
+  }
+
+</script>
