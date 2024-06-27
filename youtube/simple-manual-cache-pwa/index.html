@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>My App</title>
+        
+    <!-- mobile meta tags-->
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- pwa manifest -->
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials"/>
+
+</head>
+<body>
+    
+
+<!-- PWA cache manager -->
+<button onclick="pwaCacher.Cache()">Check for updates</button>
+<button onclick="pwaCacher.ClearCache()">Remove app cache</button>
+<script src="pwa-cacher.js"></script>
+
+<!-- register service worker -->
+ <script>
+    if (typeof(navigator) !== 'undefined' && 'serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then(function(swo) {
+            // success
+        }).catch(function(e) {
+            console.error('Something went wrong.')
+        });
+    }
+ </script>
+
+
+</body>
+</html>
