@@ -1,0 +1,47 @@
+<div class="_ytPlayer"></div>
+
+<script>
+  
+  // API docs: https://developers.google.com/youtube/iframe_api_reference
+  
+  let $ = document.querySelector.bind(document);
+  let local = {
+    player: null,
+  };
+  
+  
+  function Init() {
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+  }
+  
+  function onYouTubeIframeAPIReady() {
+      local.player = new YT.Player($('._ytPlayer'), {
+        height: '390',
+        width: '640',
+        videoId: 'Eq6EYcpWB_c',
+        playerVars: {
+          'playsinline': 1
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+  }
+  
+  function onPlayerReady(event) {
+      event.target.playVideo();
+  }
+  
+  
+  function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        // compoPlaylist.CueNext();
+      }
+  }
+  
+</script>
