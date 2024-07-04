@@ -1,0 +1,24 @@
+<button type="button" data-onclick="change-fruit">Change</button>
+<button type="button" data-onclick="translate">Translate</button>
+<hr>
+
+Fruit: <span class="_txtFruit">Watermelon</span>
+
+
+<script src="dom-events.js"></script>
+
+<script>
+
+  let $ = document.querySelector.bind(document);
+
+  function changeFruit() {
+    $('._txtFruit').replaceChildren('Lemon');
+  }
+  
+  function translate() {
+    $('._txtFruit').replaceChildren('レモン');
+  }
+  
+  DOMEvents.Init();
+  
+</script>
