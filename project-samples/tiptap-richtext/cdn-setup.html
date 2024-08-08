@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    
+    <button class="_btnAddVideo">Add YouTube video</button>
+    
+    <div class="element"></div>
+    <script type="module">
+      // import { Editor } from 'https://esm.sh/@tiptap/core'
+      // import StarterKit from 'https://esm.sh/@tiptap/starter-kit'
+      
+      // fix from gh issue: https://github.com/ueberdosis/tiptap/issues/4873
+      
+      import { Editor } from 'https://cdn.jsdelivr.net/npm/@tiptap/core@2.2.2/+esm'
+      import { StarterKit} from 'https://cdn.jsdelivr.net/npm/@tiptap/starter-kit@2.2.2/+esm'
+      import { Youtube} from 'https://cdn.jsdelivr.net/npm/@tiptap/extension-youtube@2.2.2/+esm'
+      
+      let $ = document.querySelector.bind(document);
+      
+      const editor = new Editor({
+        element: document.querySelector('.element'),
+        extensions: [
+          StarterKit,
+          Youtube,
+        ],
+        content: '<p>Hello World!</p>',
+      })
+      
+      
+      $('._btnAddVideo').onclick = function() {
+        editor.commands.setYoutubeVideo({
+          src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          width: 640,
+          height: 480,
+        })
+      }
+      
+    </script>
+    
+  </body>
+</html>
