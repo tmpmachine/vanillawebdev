@@ -1,29 +1,33 @@
 let wait = (function() {
   
   let SELF = {
-    Until,
+    until,
   };
   
-  function Until(stateCheckCallback, delay=100, timeout=null) {
+  function until(stateCheckCallback, delayCheck=100, delayTimeout=null) {
     
-    let useTimeout = timeout !== null;
-    delay = delay ?? 100;
+    let useTimeout = delayTimeout !== null;
+    delayCheck = delayCheck ?? 100;
     
     return new Promise((resolve, reject) => {
+      let timeout;
+      
+      if (useTimeout) {
+        timeout = window.setTimeout(() => {
+          window.clearInterval(interval);
+          resolve(false);
+        }, delayTimeout);
+      }
+      
       let interval = window.setInterval(() => {
         let shouldResolve = stateCheckCallback();
-        
-        timeout -= delay;
-        
         if (shouldResolve) {
           window.clearInterval(interval);
+          window.clearTimeout(timeout);
           resolve();
-        } else if (useTimeout && timeout <= 0) {
-          window.clearInterval(interval);
-          reject();
         }
         
-      }, delay);
+      }, delayCheck);
     });
     
   }
