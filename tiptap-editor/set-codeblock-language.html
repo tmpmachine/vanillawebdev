@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    
+    <button class="_btnSetLang">Set codeblock language</button>
+    
+    <div class="element"></div>
+    <script type="module">
+      import { Editor } from 'https://cdn.jsdelivr.net/npm/@tiptap/core@2.2.2/+esm'
+      import { StarterKit} from 'https://cdn.jsdelivr.net/npm/@tiptap/starter-kit@2.2.2/+esm'
+      
+      let $ = document.querySelector.bind(document);
+      
+      const editor = new Editor({
+        element: document.querySelector('.element'),
+        extensions: [
+          StarterKit,
+        ],
+        content: '<pre><code>console.log(1000);<code></pre>',
+      })
+      
+      
+      $('._btnSetLang').onclick = function() {
+        setCodeBlockLanguage();
+      }
+      
+      function setCodeBlockLanguage() {
+        let attrs = editor.getAttributes('codeBlock');
+        let userVal = window.prompt('Language', attrs.language);
+        if (userVal === null) return;
+        
+        editor.commands.setCodeBlock({
+          language: userVal
+        })
+      }
+      
+    </script>
+    
+  </body>
+</html>
